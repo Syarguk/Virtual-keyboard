@@ -41,6 +41,7 @@ function creatKeys() {
         key.addEventListener('keydown', inputKeyTextarea);
         document.querySelector('.keyboard-keys').append(key);
     });
+    
     let par = document.createElement('p');
     par.classList.add('class-p');
     par.textContent = "Switch the language - Ctrl + Shift";
