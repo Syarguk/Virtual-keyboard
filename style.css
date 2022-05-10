@@ -1,0 +1,89 @@
+@font-face {
+    font-family: 'Noto_Sans';
+    src: url("assets/fonts/Noto_Sans/NotoSans-Regular.ttf");
+    font-weight: 400;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: Noto_Sans;
+}
+.keyboard {
+    width: 963px;
+    margin: 0 auto;
+}
+textarea {
+    background-color: rgb(245, 230, 181);
+    width: 100%;
+    height: 150px;
+    resize: none;
+    font-size: 20px;
+}
+.keyboard-keys {
+    width: 100%;
+    padding: 5px;
+    background-color: rgb(47, 80, 81);
+}
+.key {
+    width: 60px;
+    height: 60px;
+    background-color: rgb(238, 247, 247);
+    border: 1px solid rgb(84, 89, 89);
+    border-radius: 5px;
+    margin: 0 3px 3px 0;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 32px;
+    vertical-align: top;
+    transition: 0.3s;
+}
+.key:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+.key:active {
+    transform: scale(0.8);
+}
+.key-manage {
+    font-size: 20px;
+    background-color: rgb(112, 202, 202);
+}
+.backspace {
+    width: 133px;
+}
+.tab {
+    width: 70px;
+}
+.caps-lock {
+    position: relative;
+    width: 133px;
+}
+.caps-lock-light::after {
+    content: '';
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    width: 9px;
+    height: 9px;
+    background-color:rgb(64, 131, 133);
+    border-radius: 5px;
+}
+.caps-lock-active::after {
+    background-color: #ff0000;
+}
+.enter {
+    width: 123px;
+}
+.shift {
+    width: 128px;
+}
+.ctrl {
+    width: 90px;
+}
+.space {
+    width: 388px;
+}
+.key-down {
+    transform: scale(0.7);
+}
