@@ -5,6 +5,8 @@ const arrKeys = [["Backquote","`","Ё"],["Digit1","1"],["Digit2","2"],["Digit3",
                 ["ControlLeft","Ctrl"],["MetaLeft","Win"],["AltLeft","Alt"],["Space","&nbsp;"],["AltRight","Alt"],["ControlRight","Ctrl"],["ArrowLeft","&#9668;"],["ArrowDown","&#9660;"],["ArrowRight","&#9658;"]];
 const KEYMANAG = ["Backspace","Tab","DEL","Caps Lock","ENTER","Shift","Ctrl","Win","Alt","&#9650;","&#9668;","&#9660;","&#9658;"];
 const ARROWS = ["&#9650;","&nbsp;","&#9668;","&#9660;","&#9658;"];
+let ctrl = false;
+let shift = false;
 creatKeys();
 function creatKeys() {
     const KEYBOARD = document.createElement('div');
@@ -35,8 +37,8 @@ function creatKeys() {
         if (!ARROWS.includes(el[1])) {key.textContent = el[1];} 
         else { key.innerHTML = el[1]};
         if (KEYLEFT) {key.style.marginRight = 0};
-        key.addEventListener('keydown', keyPress);
-        key.addEventListener('keyup', keyPress);
+        document.addEventListener('keydown', keyDown);
+        document.addEventListener('keyup', keyUp);
         key.addEventListener('click', inputKeyTextarea);
         key.addEventListener('keydown', inputKeyTextarea);
         document.querySelector('.keyboard-keys').append(key);
@@ -44,17 +46,29 @@ function creatKeys() {
     
     let par = document.createElement('p');
     par.classList.add('class-p');
-    par.textContent = "Switch the language - Ctrl + Shift";
-    par.addEventListener('click', checkLangClick);
+    par.textContent = "Switch the language - Ctrl + Shift. For Windows.";
     document.querySelector('.keyboard').append(par);
-    document.querySelector('[value=Space]').focus();
 }
-function keyPress(e) {
+function keyDown(e) {
     document.querySelectorAll('.key').forEach(el => {
         if(el.value == e.code || el.value == e.keyCode) {
-            el.classList.toggle('key-down');
+            el.classList.add('key-down');
         }
-    })
+    });
+    if (e.code == 'ControlLeft' || e.code == 'ControlRight') ctrl = true;
+    if (e.code == 'ShiftLeft' || e.code == 'ShiftRight') shift = true;
+}
+function keyUp(e) {
+    document.querySelectorAll('.key').forEach(el => {
+        if(el.value == e.code || el.value == e.keyCode) {
+            el.classList.remove('key-down');
+        }
+    });
+    if (ctrl && shift) {
+        checkLangClick();
+        ctrl = false;
+        shift = false;
+    }
 }
 function checkLangInit () {
     let index = 1;
